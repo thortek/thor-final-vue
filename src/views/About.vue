@@ -38,18 +38,11 @@ export default {
   data: function() {
     return {
       allFilms: films,
-      starships
+      starships,
     }
   },
-  methods: {
-    followLink: function (name) {
-      router.push({path: 'https://www.google.com/search?q=cake&tbm=isch'})
-    }
-  }
 }
 </script>
 
 <style>
 </style>
-
-

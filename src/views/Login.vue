@@ -40,34 +40,33 @@
 import { required, email, minLength } from 'vuelidate/lib/validators'
 
 export default {
-    data () {
-        return {
-            show1: false,
-            password: '',
-            email: ''
-        }
-    },
+    data: function() {
+    return {
+        show1: false,
+        password: '',
+        email: ''
+   }
+},
     validations: {
-        email: {
-            required,
-            email
-        },
-        password: {
-            required,
-            minLen: minLength(6)
-        }
+    email: {
+        required,
+        email
     },
-    methods: {
-        onSubmit() {
-            console.log('Thanks for submitting!')
-        }
+    password: {
+        required,
+        minLen: minLength(6)
     }
+},
+    methods: {
+    onSubmit() {
+         console.log('Thanks for submitting!')
+    }
+}
 }
 </script>
 
 <style scoped>
 .input.invalid div {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 </style>
-
