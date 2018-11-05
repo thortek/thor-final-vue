@@ -7,8 +7,8 @@
                     <div class="input" :class="{invalid: $v.email.$error}">
                    <v-text-field 
                    label="Email"
-                    v-model="email"
-                    @input="$v.email.$touch()"
+                    v-model.lazy="email"
+                    @blur="$v.email.$touch()"
                     placeholder="your_email@gmail.com"
                     >
                     </v-text-field> 
@@ -16,15 +16,15 @@
                     </div>
 
                     <v-text-field
-                        class="input"
-                        label="Password"
+                        label="Error"
                         v-model="password"
                         :type="show1 ? 'text' : 'password'"
-                        :class="{invalid: $v.password.$error}"
-                        @input="$v.password.$touch()">
+                        :rules="[rules.required, rules.min]"
+                        validate-on-blur
+                        error
+                        value="Pa"
+                       >
                     </v-text-field>
-                    <p v-if="!$v.password.required">Please provide a password.</p>
-                    <p v-if="!$v.password.$params.minLen">Please provide at least 6 characters.</p>
                 </v-form>
                 </v-card>
             </v-flex>
@@ -40,34 +40,34 @@
 import { required, email, minLength } from 'vuelidate/lib/validators'
 
 export default {
-    data () {
-        return {
-            show1: false,
-            password: '',
-            email: ''
-        }
+  data() {
+    return {
+      show1: false,
+      password: '',
+      email: '',
+        rules: {
+        required: value => !!value || 'Password is Required.',
+        min: v => v.length >= 8 || 'Min 8 characters',
     },
-    validations: {
-        email: {
-            required,
-            email
-        },
-        password: {
-            required,
-            minLen: minLength(6)
-        }
-    },
-    methods: {
-        onSubmit() {
-            console.log('Thanks for submitting!')
-        }
     }
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+  },
+  methods: {
+    onSubmit() {
+      console.log('Thanks for submitting!')
+    }
+  }
 }
 </script>
 
 <style scoped>
 .input.invalid div {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 </style>
 

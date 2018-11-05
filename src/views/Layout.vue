@@ -6,7 +6,7 @@
   </v-toolbar>
   <v-content>
 <v-container fluid>
-<div>My content goes here</div>
+<div v-box-shadow:offset.blur="3">My content goes here</div>
     </v-container>
   </v-content>
   <v-footer app>Footer</v-footer>
