@@ -16,7 +16,8 @@ export default {
     }
   },
   methods: {
-    getCourses() {axios.get('https://sweltering-fire-2420.firebaseio.com/courses.json')
+    getCourses() {
+      axios.get('https://sweltering-fire-2420.firebaseio.com/courses.json')
         .then(response => { // wow, diff between es5 function and arrow
           console.log(response)
           const allCoursesObj = response.data
@@ -25,6 +26,7 @@ export default {
           this.courses = [...objectsToArray]
         })
         .catch(error => console.log(error))
+        console.log('Done getting all the data!')
     },
   },
 }
