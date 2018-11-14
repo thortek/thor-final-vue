@@ -7,9 +7,14 @@
       v-for="course in courses"
       :key="course.key"
     >
-      <div slot="header">{{course.prefix}} {{course.number}} {{course.title}}</div>
+      <div class="main" slot="header">{{course.prefix}} {{course.number}} {{course.title}}</div>
       <v-card>
-        <v-card-text class="grey lighten-3">{{ course.description }}</v-card-text>
+        <v-card-text class="grey lighten-3">
+          <h4>Offered: {{ course.termsOffered}}</h4>
+          <h5>Credits: {{ course.lectureCredits}}  {{course.prereq}} </h5>
+          <br/>
+          <p>{{ course.description }}</p>
+        </v-card-text>
       </v-card>
     </v-expansion-panel-content>
   </v-expansion-panel>
@@ -41,5 +46,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.main {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: rgb(9, 63, 7);
+}
 </style>
