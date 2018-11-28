@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <p>Name: {{ userName }}</p>
   </div>
 </template>
 
@@ -12,6 +13,11 @@ export default {
   name: "home",
   components: {
     HelloWorld
+  },
+  computed: {
+    userName() {
+      return this.$store.getters.userName
+    }
   }
 };
 </script>

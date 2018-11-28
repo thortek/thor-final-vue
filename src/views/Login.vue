@@ -4,6 +4,8 @@
             <v-flex xs6>
                 <v-card>
                 <v-form @submit.prevent="onSubmit">
+                  <v-text-field label="Name" v-model="name" placeholder="Name">
+                  </v-text-field>
                     <div class="input" :class="{invalid: $v.email.$error}">
                    <v-text-field 
                    label="Email"
@@ -25,27 +27,26 @@
                         value="Pa"
                        >
                     </v-text-field>
+                        <v-btn round color="primary" dark @click="onSubmit">Submit</v-btn>
+
                 </v-form>
                 </v-card>
             </v-flex>
-            <div>
-                <p>{{ email }}</p>
-                <p>{{ password }}</p>
-            </div>
         </v-layout>
     </v-container>
 </template>
 
 <script>
-import { required, email, minLength } from 'vuelidate/lib/validators'
+import { required, email } from 'vuelidate/lib/validators'
 
 export default {
   data() {
     return {
       show1: false,
+      name: '',
       password: '',
       email: '',
-        rules: {
+      rules: {
         required: value => !!value || 'Password is Required.',
         min: v => v.length >= 8 || 'Min 8 characters',
     },
@@ -59,7 +60,17 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log('Thanks for submitting!')
+      const formData = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      }
+      console.log(formData)
+      this.$store.dispatch('userLoggedIn', {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      })
     }
   }
 }
