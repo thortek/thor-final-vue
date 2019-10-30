@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: {
-      name: 'Bob',
+      name: '',
       email: '',
       password: ''
     }
@@ -17,10 +17,13 @@ export default new Vuex.Store({
     userName(state) {
       return state.user.name
     },
+    user(state) {
+      return state.user
+    }
   },
   mutations: {
     storeUser(state, user) {
-      state.user = user
+      return state.user = user
     }
   },
   actions: {

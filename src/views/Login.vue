@@ -27,9 +27,8 @@
                         value="Pa"
                        >
                     </v-text-field>
-                        <v-btn round color="primary" dark @click="onSubmit">Submit</v-btn>
-
                 </v-form>
+                 <v-btn round color="primary" dark @click="onSubmit">Submit</v-btn>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -60,16 +59,16 @@ export default {
   },
   methods: {
     onSubmit() {
-      const formData = {
+      // const formData = {
+      //   name: this.name,
+      //   email: this.email,
+      //   password: this.password,
+      // }
+      // console.log(formData)
+      this.$store.dispatch('userLoggedIn', {
         name: this.name,
         email: this.email,
         password: this.password,
-      }
-      console.log(formData)
-      this.$store.dispatch('userLoggedIn', {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
       })
     }
   }

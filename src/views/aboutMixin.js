@@ -13,4 +13,11 @@ export const aboutMixin = {
       return value.toUpperCase()
     }
   },
+  computed: {
+    upperCaseShips() {
+      return this.starships.map((ship) => {
+        return { ...ship, capsName : ship.name.toUpperCase() }
+      })
+    }
+  }
 }

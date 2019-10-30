@@ -1,8 +1,8 @@
 <template>
 <v-container grid-list-md text-xs-center>
-  <v-btn @click="showing = true" class="animated infinite headShake delay-2s">Flip</v-btn>
-  <v-layout row wrap>
-    <v-flex xs3 v-for="ship in starships" :key="ship.model">
+  <v-btn @click="showing = true" class="animated headShake delay-6s">Show</v-btn>
+  <v-row>
+    <v-col cols="3" v-for="ship in starships" :key="ship.model">
       <transition name="flip" mode="out-in">
       <v-card v-if="showing">
         <v-card-title primary-title>
@@ -14,12 +14,17 @@
         </v-card-title>
 
         <v-card-actions>
-          <v-btn @click="showing = false" color="blue">Search</v-btn>
+          <v-btn @click="showing = false" color="blue">Hide</v-btn>
         </v-card-actions>
       </v-card>
       </transition>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
+  <v-row>
+    <v-col cols="3" v-for="ship in upperCaseShips" :key="ship.model">
+      <p>{{ ship.name }} {{ ship.capsName }}</p>
+    </v-col>
+  </v-row>
 </v-container>
 </template>
 
@@ -39,15 +44,11 @@ export default {
 </script>
 
 <style>
-.flip-enter {
 
-}
 .flip-enter-active {
   animation: flip-in 0.5s ease-out forwards
 }
-.flip-leave {
 
-}
 .flip-leave-active {
   animation: flip-out 0.5s ease-out forwards
 }
